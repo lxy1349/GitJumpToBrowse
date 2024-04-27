@@ -1,0 +1,45 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+  <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+  <id>com.git.jumpToBrowse.GitjumpToBrowse</id>
+
+  <!-- Public plugin name should be written in Title Case.
+       Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+  <name>GitjumpToBrowse</name>
+
+  <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+  <vendor email="1349626048@qq.com">sakuramonster</vendor>
+
+  <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+       Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+       Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+  <description><![CDATA[
+      <ul>
+      <li>基于IntelliJ IDEA和Git4Idea插件开发的根据git的commit message跳转至浏览器</li>
+      <li>操作说明</li>
+      <li>先配置tools下面的GitJumpToBrowse，包含前置URL地址和commit message中工单号的前缀</li>
+      <li>右键commit message，弹框内点击JumpToBrowse即可</li>
+  ]]></description>
+
+  <!-- Product and plugin compatibility requirements.
+       Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+  <depends>com.intellij.modules.platform</depends>
+
+  <!-- Extension points defined by the plugin.
+       Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+  <extensions defaultExtensionNs="com.intellij">
+    <notificationGroup id="listenerGitJump" displayType="BALLOON"/>
+    <applicationConfigurable
+            parentId="tools"
+            instance="com.git.jumptobrowse.config.AppSettingsConfigurable"
+            id="com.example.demo.AppSettingsConfigurable"
+            displayName="GitJumpToBrowse"/>
+    <applicationService serviceImplementation="com.git.jumptobrowse.config.AppSettingsState"/>
+  </extensions>
+  <actions>
+    <action id="rigntMenuPopTextId" class="com.git.jumptobrowse.actions.GitJumpToBrowseAction" text="JumpToBrowse"
+            description="JumpToBrowse">
+      <add-to-group group-id="Dvcs.Log.ContextMenu" anchor="first"/>
+    </action>
+  </actions>
+</idea-plugin>
