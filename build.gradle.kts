@@ -6,8 +6,8 @@ plugins {
   id("org.jetbrains.intellij") version "1.13.1"
 }
 
-group = "com.example"
-version = "1.0-SNAPSHOT"
+group = "com.git"
+version = "1.0"
 
 repositories {
   mavenCentral()
@@ -17,7 +17,7 @@ repositories {
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
   version.set("2023.1.1")
-  type.set("IC") // Target IDE Platform
+  type.set("IU") // Target IDE Platform
   plugins.set(properties("platformPlugins").map { it.split(',').map(String::trim).filter(String::isNotEmpty) })
 }
 
