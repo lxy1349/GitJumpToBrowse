@@ -40,6 +40,8 @@
        Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
   <depends>com.intellij.modules.platform</depends>
 
+  <resource-bundle>messages.GitJumpToBrowseBundle</resource-bundle>
+
   <!-- Extension points defined by the plugin.
        Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
   <extensions defaultExtensionNs="com.intellij">
@@ -55,6 +57,7 @@
     <action id="com.git.jumptobrowse.actions.GitJumpToBrowseAction" class="com.git.jumptobrowse.actions.GitJumpToBrowseAction" text="JumpToBrowse"
             description="JumpToBrowse">
       <add-to-group group-id="Dvcs.Log.ContextMenu" anchor="first"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl j"/>
     </action>
   </actions>
 </idea-plugin>

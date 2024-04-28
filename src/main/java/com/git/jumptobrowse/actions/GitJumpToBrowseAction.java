@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import com.git.jumptobrowse.config.AppSettingsState;
+import com.git.jumptobrowse.i18n.GitJumpToBrowseBundle;
 import com.intellij.notification.NotificationGroupManager;
 import com.intellij.notification.NotificationType;
 import com.intellij.openapi.actionSystem.AnAction;
@@ -34,14 +35,14 @@ public class GitJumpToBrowseAction extends AnAction {
     VcsLogCommitSelection selection = e.getRequiredData(VcsLogDataKeys.VCS_LOG_COMMIT_SELECTION);
     List<VcsFullCommitDetails> cachedFullDetails = selection.getCachedFullDetails();
     if (CollectionUtils.isEmpty(cachedFullDetails)) {
-      tip(e, "Warning", "没有选择git的提交信息", NotificationType.WARNING);
+      tip(e, "Warning", GitJumpToBrowseBundle.message("com.git.browse.no.git.message"), NotificationType.WARNING);
       return;
     }
     String message = cachedFullDetails.get(0).getFullMessage().toUpperCase().trim();
     List<String> nums = getNums(e, message);
     if (CollectionUtils.isEmpty(nums)) {
-      tip(e, "Warning", "当前提交记录存在[" + AppSettingsState.getInstance().numPrefix + "]的提交记录，" +
-          "无法打开浏览器", NotificationType.WARNING);
+      tip(e, "Warning", GitJumpToBrowseBundle.message("com.git.browse.not.exists.commit.message.cannot.open.browse",
+          AppSettingsState.getInstance().numPrefix), NotificationType.WARNING);
       return;
     }
     if (nums.size() == 1) {
@@ -67,19 +68,20 @@ public class GitJumpToBrowseAction extends AnAction {
       }
       desktop.browse(new URI(baseUrl + num));
     } catch (Exception ex) {
-      tip(e, "Error", "打开浏览器异常", NotificationType.ERROR);
+
+      tip(e, "Error", "com.git.open.browse.exception", NotificationType.ERROR);
     }
   }
 
   private Desktop getDeskTop(AnActionEvent e) {
     if (!Desktop.isDesktopSupported()) {
-      tip(e, "Tip", "不支持在默认浏览器中打开 URL", NotificationType.INFORMATION);
+      tip(e, "Tip", "com.git.open.browse.not.allow", NotificationType.INFORMATION);
       return null;
     }
     Desktop desktop = Desktop.getDesktop();
     // 检查Desktop是否支持打开浏览器
     if (!desktop.isSupported(Desktop.Action.BROWSE)) {
-      tip(e, "Tip", "不支持在默认浏览器中打开 URL", NotificationType.INFORMATION);
+      tip(e, "Tip", "com.git.open.browse.not.allow", NotificationType.INFORMATION);
       return null;
     }
     return desktop;
