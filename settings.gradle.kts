@@ -1,1 +1,1 @@
-rootProject.name = "GitjumpToBrowse"
+rootProject.name = "GitJumpToBrowse"
