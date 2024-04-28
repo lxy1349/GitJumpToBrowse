@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
 import com.git.jumptobrowse.config.AppSettingsState;
 import com.git.jumptobrowse.i18n.GitJumpToBrowseBundle;
 import com.intellij.notification.NotificationGroupManager;
@@ -39,7 +38,7 @@ public class GitJumpToBrowseAction extends AnAction {
       return;
     }
     String message = cachedFullDetails.get(0).getFullMessage().toUpperCase().trim();
-    List<String> nums = getNums(e, message);
+    List<String> nums = getNums(message);
     if (CollectionUtils.isEmpty(nums)) {
       tip(e, "Warning", GitJumpToBrowseBundle.message("com.git.browse.not.exists.commit.message.cannot.open.browse",
           AppSettingsState.getInstance().numPrefix), NotificationType.WARNING);
@@ -87,8 +86,8 @@ public class GitJumpToBrowseAction extends AnAction {
     return desktop;
   }
 
-  private List<String> getNums(AnActionEvent e, String message) {
-    String[] numPrefixArr = StringUtils.split(AppSettingsState.getInstance().numPrefix.trim().toUpperCase(), ";");
+  private List<String> getNums(String message) {
+    String[] numPrefixArr = AppSettingsState.getInstance().numPrefix.trim().toUpperCase().split(";");
     List<String> result = new ArrayList<>();
     for (String numPrefix : numPrefixArr) {
       Pattern p = Pattern.compile(numPrefix + "\\d+");
