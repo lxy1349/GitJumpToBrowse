@@ -12,12 +12,12 @@ public class AppSettingsComponent {
 
 	private final JPanel myMainPanel;
 	private final JBTextField baseUrl = new JBTextField();
-	private final JBTextField prefixUrl = new JBTextField();
+	private final JBTextField numPrefix = new JBTextField();
 
 	public AppSettingsComponent() {
 		myMainPanel = FormBuilder.createFormBuilder()
 				.addLabeledComponent(new JBLabel("BaseUrl: "), baseUrl, 1, false)
-				.addLabeledComponent(new JBLabel("PrefixUrl: "), prefixUrl, 2, false)
+				.addLabeledComponent(new JBLabel("NumPrefix: "), numPrefix, 2, false)
 				.addComponentFillVertically(new JPanel(), 0)
 				.getPanel();
 	}
@@ -40,12 +40,12 @@ public class AppSettingsComponent {
 	}
 
 	@NotNull
-	public String getPrefixUrl() {
-		return prefixUrl.getText();
+	public String getNumPrefix() {
+		return numPrefix.getText();
 	}
 
-	public void setPrefixUrl(@NotNull String newText) {
-		prefixUrl.setText(newText);
+	public void setNumPrefix(@NotNull String newText) {
+		numPrefix.setText(newText);
 	}
 
 }

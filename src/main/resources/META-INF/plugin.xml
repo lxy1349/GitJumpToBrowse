@@ -17,17 +17,24 @@
       <tag>Extract information from git commit message and jump to a specific browser address</tag>
       <h3>English:</h3>
       <ul>
-      <li>Developed based on IntelliJ IDEA and Git4Idea plugin, it allows users to jump to a browser based on git commit message.</li>
-      <li>Operating Instructions</li>
-      <li>First, configure GitJumpToBrowse under Setting->Tools, including the prefix URL and the prefix of the work order number in the commit message.</li>
-      <li>Right-click on the commit message, and click "JumpToBrowse" in the popup window to proceed.</li>
+        <li>Developed using IntelliJ IDEA and the Git4Idea plugin to jump to a browser based on git commit messages</li>
+        <li>Instructions</li>
+        <li>First, configure GitJumpToBrowse under Settings->Tools, including the base URL and the prefix for the issue number in commit messages</li>
+        <li>Right-click on the commit message, then click JumpToBrowse in the popup dialog</li>
+        <li>Configuration Rule Explanation</li>
+        <li>The rule for extracting the issue number from the commit message is: the information configured in numPreFix (multiple prefixes can be configured separated by ";") + number.</li>
+        <li>Actual URL = BaseUrl + numPreFix + number</li>
+      </ul>
       <h3>中文：</h3>
       <ul>
-      <li>基于IntelliJ IDEA和Git4Idea插件开发的根据git的commit message跳转至浏览器</li>
-      <li>操作说明</li>
-      <li>先配置Setting->Tools下面的GitJumpToBrowse，包含前置URL地址和commit message中工单号的前缀</li>
-      <li>右键commit message，弹框内点击JumpToBrowse即可</li>
-  ]]></description>
+        <li>基于IntelliJ IDEA和Git4Idea插件开发的根据git的commit message跳转至浏览器</li>
+        <li>使用说明</li>
+        <li>先配置Setting->Tools下面的GitJumpToBrowse，包含前置URL地址和commit message中单号的前缀</li>
+        <li>右键commit message，弹框内点击JumpToBrowse即可</li>
+        <li>配置规则解释</li>
+        <li>取commit message的单号的规则为：numPreFix中配置的信息（numPreFix可以配置多个以";"分隔）+数字</li>
+        <li>实际URL=BaseUrl+numPreFix+数字</li>
+      </ul>]]></description>
 
   <!-- Product and plugin compatibility requirements.
        Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->

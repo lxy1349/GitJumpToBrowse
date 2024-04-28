@@ -40,7 +40,7 @@ public class GitJumpToBrowseAction extends AnAction {
     String message = cachedFullDetails.get(0).getFullMessage().toUpperCase().trim();
     List<String> nums = getNums(e, message);
     if (CollectionUtils.isEmpty(nums)) {
-      tip(e, "Warning", "当前提交记录存在[" + AppSettingsState.getInstance().prefixUrl + "]的提交记录，" +
+      tip(e, "Warning", "当前提交记录存在[" + AppSettingsState.getInstance().numPrefix + "]的提交记录，" +
           "无法打开浏览器", NotificationType.WARNING);
       return;
     }
@@ -86,10 +86,10 @@ public class GitJumpToBrowseAction extends AnAction {
   }
 
   private List<String> getNums(AnActionEvent e, String message) {
-    String[] prefixUrlArr = StringUtils.split(AppSettingsState.getInstance().prefixUrl.trim().toUpperCase(), ";");
+    String[] numPrefixArr = StringUtils.split(AppSettingsState.getInstance().numPrefix.trim().toUpperCase(), ";");
     List<String> result = new ArrayList<>();
-    for (String prefixUrl : prefixUrlArr) {
-      Pattern p = Pattern.compile(prefixUrl + "\\d+");
+    for (String numPrefix : numPrefixArr) {
+      Pattern p = Pattern.compile(numPrefix + "\\d+");
       Matcher m = p.matcher(message);
       while (m.find()) {
         result.add(m.group());

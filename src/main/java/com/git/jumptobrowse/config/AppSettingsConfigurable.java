@@ -35,7 +35,7 @@ public class AppSettingsConfigurable implements Configurable {
 	public boolean isModified() {
 		AppSettingsState settings = AppSettingsState.getInstance();
 		boolean modified = !mySettingsComponent.getBaseUrlText().equals(settings.baseUrl);
-		modified |= mySettingsComponent.getPrefixUrl().equals(settings.prefixUrl);
+		modified |= mySettingsComponent.getNumPrefix().equals(settings.numPrefix);
 		return modified;
 	}
 
@@ -43,14 +43,14 @@ public class AppSettingsConfigurable implements Configurable {
 	public void apply() {
 		AppSettingsState settings = AppSettingsState.getInstance();
 		settings.baseUrl = mySettingsComponent.getBaseUrlText();
-		settings.prefixUrl = mySettingsComponent.getPrefixUrl();
+		settings.numPrefix = mySettingsComponent.getNumPrefix();
 	}
 
 	@Override
 	public void reset() {
 		AppSettingsState settings = AppSettingsState.getInstance();
 		mySettingsComponent.setBaseUrlText(settings.baseUrl);
-		mySettingsComponent.setPrefixUrl(settings.prefixUrl);
+		mySettingsComponent.setNumPrefix(settings.numPrefix);
 	}
 
 	@Override

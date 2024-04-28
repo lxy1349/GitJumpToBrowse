@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 public class AppSettingsState implements PersistentStateComponent<AppSettingsState> {
 
 	public String baseUrl = "http://YourBaseUrl";
-	public String prefixUrl = "HDCS-;HB-";
+	public String numPrefix = "HDCS-;HB-";
 
 	public static AppSettingsState getInstance() {
 		return ApplicationManager.getApplication().getService(AppSettingsState.class);
