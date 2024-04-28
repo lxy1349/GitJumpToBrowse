@@ -37,7 +37,7 @@
     <applicationService serviceImplementation="com.git.jumptobrowse.config.AppSettingsState"/>
   </extensions>
   <actions>
-    <action id="rigntMenuPopTextId" class="com.git.jumptobrowse.actions.GitJumpToBrowseAction" text="JumpToBrowse"
+    <action id="com.git.jumptobrowse.actions.GitJumpToBrowseAction" class="com.git.jumptobrowse.actions.GitJumpToBrowseAction" text="JumpToBrowse"
             description="JumpToBrowse">
       <add-to-group group-id="Dvcs.Log.ContextMenu" anchor="first"/>
     </action>
