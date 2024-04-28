@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 )
 public class AppSettingsState implements PersistentStateComponent<AppSettingsState> {
 
-	public String baseUrl = "http://jira6.app.hd123.cn/jira/browse/";
+	public String baseUrl = "http://YourBaseUrl";
 	public String prefixUrl = "HDCS-;HB-";
 
 	public static AppSettingsState getInstance() {
