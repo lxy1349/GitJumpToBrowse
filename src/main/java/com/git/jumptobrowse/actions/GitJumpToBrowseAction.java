@@ -37,7 +37,6 @@ public class GitJumpToBrowseAction extends AnAction {
       tip(e, "Warning", GitJumpToBrowseBundle.message("com.git.browse.no.git.message"), NotificationType.WARNING);
       return;
     }
-
     String message = cachedFullDetails.get(0).getFullMessage().toUpperCase().trim();
     List<String> nums = getNums(message);
     if (CollectionUtils.isEmpty(nums)) {
