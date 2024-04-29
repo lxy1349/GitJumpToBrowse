@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.swing.JButton;
-import javax.swing.JPanel;
 import org.apache.commons.collections.CollectionUtils;
 import com.git.jumptobrowse.config.AppSettingsState;
 import com.git.jumptobrowse.i18n.GitJumpToBrowseBundle;
@@ -17,8 +15,10 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.popup.JBPopup;
 import com.intellij.openapi.ui.popup.JBPopupFactory;
+import com.intellij.openapi.ui.popup.ListSeparator;
+import com.intellij.openapi.ui.popup.PopupStep;
+import com.intellij.openapi.ui.popup.util.BaseListPopupStep;
 import com.intellij.vcs.log.VcsFullCommitDetails;
 import com.intellij.vcs.log.VcsLogCommitSelection;
 import com.intellij.vcs.log.VcsLogDataKeys;
@@ -47,15 +47,20 @@ public class GitJumpToBrowseAction extends AnAction {
     if (nums.size() == 1) {
       openBrowse(e, desktop, nums.get(0));
     } else {
-      JPanel panel = new JPanel();
-      for (String num : nums) {
-        JButton jButton = new JButton(num);
-        Desktop finalDesktop = desktop;
-        jButton.addActionListener(e1 -> openBrowse(e, finalDesktop, num));
-        panel.add(jButton);
-      }
-      JBPopup jbPopup = JBPopupFactory.getInstance().createComponentPopupBuilder(panel, null).createPopup();
-      jbPopup.showInBestPositionFor(e.getDataContext());
+      Desktop finalDesktop = desktop;
+      JBPopupFactory.getInstance().createListPopup(
+        new BaseListPopupStep<String>(GitJumpToBrowseBundle.message("com.git.browse.num.select"), nums) {
+        @Override
+        public ListSeparator getSeparatorAbove(String value) {
+          return value == null ? new ListSeparator() : null;
+        }
+
+        @Override
+        public PopupStep<?> onChosen(String selectedValue, boolean finalChoice) {
+          openBrowse(e, finalDesktop, selectedValue);
+          return FINAL_CHOICE;
+        }
+      }).showInBestPositionFor(e.getDataContext());
     }
   }
 
