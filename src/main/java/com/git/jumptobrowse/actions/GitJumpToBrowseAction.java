@@ -3,7 +3,9 @@ package com.git.jumptobrowse.actions;
 import java.awt.Desktop;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.collections.CollectionUtils;
@@ -93,7 +95,7 @@ public class GitJumpToBrowseAction extends AnAction {
 
   private List<String> getNums(String message) {
     String[] numPrefixArr = AppSettingsState.getInstance().numPrefix.trim().toUpperCase().split(";");
-    List<String> result = new ArrayList<>();
+    Set<String> result = new LinkedHashSet<>();
     for (String numPrefix : numPrefixArr) {
       Pattern p = Pattern.compile(numPrefix + "\\d+");
       Matcher m = p.matcher(message);
@@ -101,7 +103,7 @@ public class GitJumpToBrowseAction extends AnAction {
         result.add(m.group());
       }
     }
-    return result;
+    return new ArrayList<>(result);
   }
 
   private void tip(AnActionEvent e, String title, String content, NotificationType type) {
