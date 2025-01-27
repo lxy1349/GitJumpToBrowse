@@ -36,7 +36,7 @@ public class GitJumpToBrowseAction extends AnAction {
     Desktop desktop = null;
     if (project == null || (desktop = getDeskTop(e)) == null)
       return;
-    VcsLogCommitSelection selection = e.getRequiredData(VcsLogDataKeys.VCS_LOG_COMMIT_SELECTION);
+    VcsLogCommitSelection selection = e.getData(VcsLogDataKeys.VCS_LOG_COMMIT_SELECTION);
     List<VcsCommitMetadata> cachedMetadatas = selection.getCachedMetadata();
     if (CollectionUtils.isEmpty(cachedMetadatas)) {
       tip(e, "Warning", GitJumpToBrowseBundle.message("com.git.browse.no.git.message"),
